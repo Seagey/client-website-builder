@@ -85,12 +85,12 @@ Section order is fixed: Overview → Colors → Typography → Layout → Elevat
 
 ## How to author a DESIGN.md
 
-1. **Find the brand source.** Existing brand book PDF, screenshots, hex codes in CSS, or seagey's brand memory entries (`memory/brand_*.md`).
-2. **Extract tokens.** Hex colors, font names + sizes, border-radius scale, spacing scale, component recipes.
-3. **Write the yaml first.** Tokens are normative — get them right. Use referenced tokens (`{colors.tertiary}`) inside `components` instead of repeating hex values.
+1. **Find the brand source.** Existing brand book PDF, screenshots, hex codes in CSS, or notes captured during intake.
+2. **Extract tokens.** Hex colours, font names and sizes, border-radius scale, spacing scale, component recipes.
+3. **Write the yaml first.** Tokens are normative, get them right. Use referenced tokens (`{colors.tertiary}`) inside `components` instead of repeating hex values.
 4. **Write the prose.** Lead each section with the WHY, not just the what. Two to four sentences per section is usually enough.
-5. **House rules:** no em dashes (`—`) or en dashes (`–`) anywhere. Australian English (`colour`, `centre`, `optimise`). Lowercase conversational tone in the markdown, not corporate filler.
-6. **Lint before saving.** `npx @google/design.md lint DESIGN.md` — exit code 1 means errors.
+5. **House rules:** no em dashes (`—`) or en dashes (`–`) anywhere. Australian English (`colour`, `centre`, `optimise`). Sentence case, conversational tone in the markdown, not corporate filler.
+6. **Lint before saving.** `npx @google/design.md lint DESIGN.md`. Exit code 1 means errors.
 
 ## CLI commands you'll actually use
 
@@ -118,37 +118,26 @@ No npm install needed — `npx` resolves it on demand.
 
 ## Where DESIGN.md lives
 
-- **Per project:** `<project-repo>/DESIGN.md` at repo root. Workers read this on every spawn.
-- **Brand engagements:** alongside the brand book PDF in `clients/<slug>/brand/`. The 1-page A4 brand book is for humans, the DESIGN.md is for agents.
-- **Studio canonical:** `agents/projects/brand/underseage-studio.DESIGN.md` — the studio's own brand spec, used as a reference example.
+- **Per project:** at the project root. The site-builder reads this when generating the website.
+- **Brand engagements:** alongside the brand book PDF in `design/`. The 1-page A4 brand book is for humans, the DESIGN.md is for agents.
 
-## Wire into projects agent
+## Pre-deploy lint gate (optional)
 
-Each row in `agents/projects/projects.json` should have:
-```json
-{
-  "claudemd_path": "<repo>/CLAUDE.md",
-  "designmd_path": "<repo>/DESIGN.md"
-}
-```
+Before deploying, check the spec is still valid:
 
-Worker reads both at spawn. If `designmd_path` is missing or the file doesn't exist, surface as `registry_flag: "missing_designmd"` in the worker's plan output so seagey can decide whether to author one before the work proceeds.
-
-## Wire into deploy-runbook (later phase)
-
-Add a pre-deploy lint gate to the projects agent's deploy skill:
 ```bash
-if [ -f "$REPO/DESIGN.md" ]; then
-  npx @google/design.md lint "$REPO/DESIGN.md" || exit 1
+if [ -f "DESIGN.md" ]; then
+  npx @google/design.md lint "DESIGN.md" || exit 1
 fi
 ```
-Catches contrast regressions before they ship.
+
+Catches contrast regressions and broken token references before they ship.
 
 ## House rules when authoring DESIGN.md
 
 - **No em or en dashes.** Replace with periods, commas, or "and"/"but". Hard rule across all output.
 - **Australian English.** `colour`, `centre`, `behaviour`, `optimise`, `realise`.
-- **Lowercase conversational** in the markdown body. Sharp, not corporate.
+- **Sentence case, conversational** in the markdown body. Sharp, not corporate.
 - **Every colour token gets an `on-*` partner** (e.g. `on-primary`) so workers can pick a contrast-safe text colour without guessing.
 - **Fonts:** prefer Google Fonts (free, agent can `<link>` them straight in). If the brand uses paid fonts, document the fallback stack.
 

@@ -14,7 +14,7 @@ A small, opinionated reference library of premium consumer-facing websites worth
 
 1. **Structural inspiration only.** Use these references to inform LAYOUT, HIERARCHY, SPACING RHYTHM, HERO TREATMENT, CARD STYLES, SCROLL FEEL.
 2. **Never lift visuals.** Do not copy a brand's exact colours, fonts, logo, or imagery. Each redesign must feel like the LOCAL BUSINESS we're building for, not like Apple-with-a-different-logo.
-3. **Never lift copy.** No taglines, no slogans, no headline phrasing from a reference brand. All copy comes from the scraped business data.
+3. **Never lift copy.** No taglines, no slogans, no headline phrasing from a reference brand. All copy comes from the brief and notes captured during intake.
 4. **Never name the reference in the output.** The redesign must not reference the inspiration site by name in the HTML, the comments, or anywhere visible to the client.
 5. **No SaaS, no dashboards, no dev tools.** This library has been pre-filtered to exclude them. Don't reach for the upstream library and pull something like Linear, Stripe, Vercel, Notion, Figma — those are dashboard layouts and they make local-business sites feel cold, busy, and wrong.
 6. **Only use what fits the sector.** Use the sector map below — don't apply BMW patterns to a yoga studio.
@@ -94,12 +94,12 @@ If the sector isn't in the table, pick the row that's closest in *feel*, not the
 
 ---
 
-## How to use in site-redesign
+## How to use in site-builder
 
-1. **Determine the sector** from the lead's category and scraped content. Don't ask the user — derive it.
+1. **Determine the sector** from the brief and the business description captured during intake.
 2. **Look up 1-2 primary references** in the sector map.
-3. **Open the relevant brand notes above** and pick 2-3 specific structural patterns to inherit (e.g. "airbnb's photo-led hero" + "spotify's category grid").
-4. **Translate to the local business.** Apply those patterns to the business's actual content, photos, and brand. Use the design-system palette/fonts/layout combos in site-redesign — DO NOT use the reference brand's colours, fonts, or copy.
+3. **Open the relevant brand notes above** and pick 2-3 specific structural patterns to inherit (e.g. "airbnb's photo-led hero" plus "pinterest's masonry grid").
+4. **Translate to the user's business.** Apply those patterns to their actual content, photos, and brand. Use the colours and fonts locked in DESIGN.md. Do not use the reference brand's colours, fonts, or copy.
 5. **Never name the reference in the output.** The brief was "study X, build for Y", and only Y appears in the deliverable.
 
 ---
