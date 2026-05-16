@@ -73,12 +73,14 @@ State these back in a short numbered summary. Wait for approval before Phase 2.
 
 ## Phase 2: Brand book
 
-Run the `design-system` skill to produce:
+Run the `design-system` skill in **Path B** (intake notes mode). Pass it the locked values from Phase 1b: business name, tagline, primary/secondary/tertiary hex codes, font pairing, logo decision. The skill renders these into:
 
-1. **`design-system.html`** at `design/design-system.html`. Scrollable reference page (colours, type, principles, components, wordmarks).
-2. **`brand-book-a4.html`** then render to `design/brand-book-a4.pdf`. The 1-page A4 portrait brand book PDF.
+1. **`design/design-system.html`**. Scrollable reference page (colours, type, principles, components, wordmarks).
+2. **`design/brand-book-a4.pdf`** (rendered from `design/brand-book-a4.html`). The 1-page A4 portrait brand book PDF.
 
-Then also write a **`DESIGN.md`** at the project root using the `designmd` skill format. This is the machine-readable brand spec the website build will read.
+Then write a **`DESIGN.md`** at the project root using the `designmd` skill format. This is the machine-readable brand spec the website build will read. The DESIGN.md uses the same locked values, structured as YAML tokens.
+
+Important: design-system's Path B explicitly authors from intake notes rather than extracting from an external reference. The locked values ARE the reference. This is not "inventing" because the user already chose and approved each value during Phase 1b.
 
 Show the user:
 - The 1-page brand book PDF (it's the easiest thing to look at and approve)

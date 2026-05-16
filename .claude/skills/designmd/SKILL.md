@@ -1,6 +1,6 @@
 ---
 name: designmd
-description: Author, lint, diff, and export DESIGN.md files. DESIGN.md is Google's open spec for describing a brand's visual identity to coding agents (yaml token front matter for colors, typography, rounded, spacing, components, plus markdown rationale prose). Use this skill whenever a project needs a machine-readable brand handoff doc, before site-redesign / cinematic-sites / vercel-deploy work, or whenever a new managed project lands without a DESIGN.md at its repo root. Triggers on "designmd", "design.md", "write design tokens", "brand spec for agents", "lint design tokens", "export to tailwind theme".
+description: Author, lint, diff, and export DESIGN.md files. DESIGN.md is Google's open spec for describing a brand's visual identity to coding agents (yaml token front matter for colors, typography, rounded, spacing, components, plus markdown rationale prose). Use this skill whenever a project needs a machine-readable brand handoff doc, before site-builder or vercel-deploy work, or whenever a project needs a DESIGN.md at its root. Triggers on "designmd", "design.md", "write design tokens", "brand spec for agents", "lint design tokens", "export to tailwind theme".
 ---
 
 # designmd
@@ -9,11 +9,11 @@ Single-file canonical brand spec for any project. The yaml at the top is what co
 
 ## When to use this skill
 
-- A new project enters the registry without a `DESIGN.md` at repo root.
-- A brand engagement ships (clayton-oates style) and needs a handoff to future you / future agents.
-- Before any `site-redesign` or `cinematic-sites` run, so the worker has structured tokens not vibes.
+- A new project needs a `DESIGN.md` at its root.
+- A brand engagement ships and needs a handoff doc for future agents.
+- Before any `site-builder` or website generation run, so the worker has structured tokens, not vibes.
 - Pre-deploy: lint to catch contrast failures and broken token refs before pushing live.
-- Migrating a tailwind config — export rather than hand-maintain.
+- Migrating a tailwind config: export rather than hand-maintain.
 
 ## Format reminder
 
@@ -89,7 +89,7 @@ Section order is fixed: Overview → Colors → Typography → Layout → Elevat
 2. **Extract tokens.** Hex colours, font names and sizes, border-radius scale, spacing scale, component recipes.
 3. **Write the yaml first.** Tokens are normative, get them right. Use referenced tokens (`{colors.tertiary}`) inside `components` instead of repeating hex values.
 4. **Write the prose.** Lead each section with the WHY, not just the what. Two to four sentences per section is usually enough.
-5. **House rules:** no em dashes (`—`) or en dashes (`–`) anywhere. Australian English (`colour`, `centre`, `optimise`). Sentence case, conversational tone in the markdown, not corporate filler.
+5. **House rules:** no em dashes or en dashes anywhere. Australian English (`colour`, `centre`, `optimise`). Sentence case, conversational tone in the markdown, not corporate filler.
 6. **Lint before saving.** `npx @google/design.md lint DESIGN.md`. Exit code 1 means errors.
 
 ## CLI commands you'll actually use
@@ -114,7 +114,7 @@ npx @google/design.md export --format dtcg DESIGN.md > tokens.json
 npx @google/design.md spec
 ```
 
-No npm install needed — `npx` resolves it on demand.
+No npm install needed, `npx` resolves it on demand.
 
 ## Where DESIGN.md lives
 
@@ -157,4 +157,4 @@ Before saying "done":
 - [ ] each colour has an `on-*` partner where it's used as a background
 - [ ] components reference tokens (`{colors.tertiary}`) not hardcoded hex
 - [ ] section order respected (Overview → Colors → Typography → Layout → Elevation → Shapes → Components → Do's and Don'ts)
-- [ ] saved to `<project-repo>/DESIGN.md` AND noted in `projects.json` `designmd_path`
+- [ ] saved to `<project-root>/DESIGN.md`

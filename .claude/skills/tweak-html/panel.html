@@ -603,7 +603,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
   let activeSliders = []; // current set of slider defs being shown
   // values[targetKey] = { sliderId: number, ... }
   const values = {};
-  // ctx[targetKey] = { sliderId: {cached, def}, ... } — apply contexts per slider per target
+  // ctx[targetKey] = { sliderId: {cached, def}, ... }, apply contexts per slider per target
   const ctx = {};
 
   function targetKey(idx) {
@@ -613,7 +613,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
     return isPerSlide ? slides[idx] : document.body;
   }
   function targetLabel(idx) {
-    if (!isPerSlide) return { badge: 'Page', name: document.title || '—' };
+    if (!isPerSlide) return { badge: 'Page', name: document.title || ',' };
     const s = slides[idx];
     return { badge: 'Slide ' + String(idx + 1).padStart(2, '0'), name: s?.dataset.title || `Slide ${idx + 1}` };
   }
@@ -838,7 +838,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
     }
     const text = 'BAKE_TWEAK_v1\n' + JSON.stringify(payload, null, 2);
     bakeJsonEl.textContent = text;
-    bakeSummaryEl.textContent = `${dirtyCount} ${dirtyCount === 1 ? 'change' : 'changes'} ready. Copy and paste back to Claude — Claude will apply them and remove this panel.`;
+    bakeSummaryEl.textContent = `${dirtyCount} ${dirtyCount === 1 ? 'change' : 'changes'} ready. Copy and paste back to Claude, Claude will apply them and remove this panel.`;
     bakeModal.classList.add('show');
   }
 
@@ -853,7 +853,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
       btn.textContent = 'Copied ✓';
       setTimeout(() => { btn.textContent = orig; }, 1400);
     }).catch(() => {
-      toast('Copy failed — select manually');
+      toast('Copy failed, select manually');
     });
   });
   document.getElementById('tweak-bake-download').addEventListener('click', () => {
@@ -886,7 +886,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
   }
 
   function bakedToCss(payload) {
-    // Best-effort CSS overrides from the bake payload — not as precise as Claude's in-place edits,
+    // Best-effort CSS overrides from the bake payload, not as precise as Claude's in-place edits,
     // but good for the standalone download path.
     const lines = [];
     function emit(scope, vals) {
@@ -899,7 +899,7 @@ input[type="range"].tweak-slider::-moz-range-thumb {
         } else if (sid === 'density') {
           lines.push(`${scope} .slide-content, ${scope} section, ${scope} .container { padding: calc(var(--slide-padding, 4rem) * ${v}) !important; }`);
         } else if (sid === 'roundness') {
-          lines.push(`/* roundness ${v}× — apply manually for precision */`);
+          lines.push(`/* roundness ${v}×, apply manually for precision */`);
         } else if (sid === 'saturation') {
           lines.push(`${scope || 'body'} { filter: saturate(${v}); }`);
         } else if (sid === 'background') {
